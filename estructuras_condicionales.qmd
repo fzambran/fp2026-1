@@ -1,0 +1,668 @@
+---
+title: "Estructuras de Control"
+subtitle: "Secuenciales y Condicionales"
+author: "Felipe Zambrano B."
+institute: "Universidad Alberto Hurtado"
+date: "2026-05-11"
+date-format: "DD-MM-YYYY"
+format:
+  revealjs:
+    theme: [default, uah.scss]
+    slide-number: c/t
+    footer: "Universidad para *el bien común*"
+    width: 1280
+    height: 720
+    margin: 0.08
+    code-line-numbers: false
+    highlight-style: monokai
+    transition: fade
+    transition-speed: fast
+    controls: true
+    progress: true
+    center: false
+    title-slide-attributes:
+      data-background-color: "#000000"
+execute:
+  echo: true
+  eval: false
+---
+
+## {background-color="#000000"}
+
+<br><br>
+
+::: {style="padding-left: 60px;"}
+
+[RESULTADO DE APRENDIZAJE]{style="font-family:'Rubik',sans-serif; font-size:0.62em; color:#02FF7A; font-weight:700; text-transform:uppercase; letter-spacing:0.12em;"}
+
+<br>
+
+[Construir **estructuras condicionales** correctamente indentadas, tomando decisiones computacionales basadas en **condiciones múltiples** usando Python.]{style="font-family:'Frank Ruhl Libre',serif; font-size:1.25em; color:white; line-height:1.5; display:block; max-width:85%;"}
+
+:::
+
+---
+
+## ¿Qué son las Estructuras de Control?
+
+::: {.num-seccion}
+01
+:::
+
+Las **estructuras de control** determinan el **orden de ejecución** de las instrucciones en un programa.
+
+En Python existen tres tipos principales:
+
+- **Secuenciales:** instrucciones ejecutadas línea a línea, de arriba hacia abajo
+- **Condicionales:** un bloque se ejecuta *solo si* se cumple una condición (`if`, `elif`, `else`)
+- **Repetitivas:** un bloque se repite mientras se cumpla una condición (`for`, `while`)
+
+::: {.caja-correcta}
+📌 En esta unidad nos enfocamos en las estructuras **secuenciales** y **condicionales**.
+:::
+
+---
+
+## Estructura Secuencial
+
+::: {.num-seccion}
+02
+:::
+
+Es la forma más básica: las instrucciones se ejecutan **una tras otra**, en el orden en que aparecen en el código.
+
+```{python}
+nombre = input("¿Cuál es tu nombre?: ")
+edad   = int(input("¿Cuántos años tienes?: "))
+print(f"Hola {nombre}, tienes {edad} años.")
+print("Fin del programa.")
+```
+
+- El programa **siempre** sigue el mismo camino
+- No hay bifurcaciones ni repeticiones
+- **Todas las líneas** se ejecutan exactamente una vez
+
+::: {.caja-correcta}
+Este flujo es el más simple, pero insuficiente cuando necesitamos **tomar decisiones**.
+:::
+
+---
+
+## La Instrucción `if`
+
+::: {.num-seccion}
+03
+:::
+
+:::: {.columns}
+::: {.column width="55%"}
+
+La instrucción `if` ejecuta un bloque de código **solo si la condición es verdadera**.
+
+::: {.sintaxis}
+`if` condición`:`
+    bloque de código
+    (se ejecuta si True)
+:::
+
+**¿Cómo funciona?**
+
+1. Python evalúa la condición
+2. Si es `True` → ejecuta el bloque indentado
+3. Si es `False` → omite el bloque y continúa
+
+:::
+::: {.column width="45%"}
+
+```{mermaid}
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#02FF7A',
+  'primaryTextColor': '#000000',
+  'primaryBorderColor': '#000000',
+  'lineColor': '#000000',
+  'fontSize': '15px'
+}}}%%
+flowchart TD
+    A([Inicio]) --> B{condición}
+    B -->|Verdadero| C[Bloque if]
+    B -->|Falso| D([Continúa])
+    C --> D
+    style B fill:#02FF7A,stroke:#000000,color:#000000
+    style A fill:#000000,stroke:#000000,color:#ffffff
+    style D fill:#000000,stroke:#000000,color:#ffffff
+    style C fill:#e6fff2,stroke:#02FF7A,color:#000000
+```
+
+:::
+::::
+
+---
+
+## Ejemplo 1 — Verificación de Nombre
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** Un sistema pide el nombre del usuario y verifica si tiene acceso.
+
+```python
+# Traducido y adaptado desde ejemplo1.py
+mi_nombre = input("¿Cuál es tu nombre?: ")
+
+if mi_nombre == "Felipe":
+    print("¡Bienvenido!")
+    print("Tienes acceso al sistema.")
+else:
+    print("¿Quién eres tú?")
+    print("Acceso denegado.")
+```
+
+::: {.caja-correcta}
+**Análisis:** Si el nombre ingresado es `"Felipe"` → saluda y da acceso. Cualquier otro nombre → deniega el acceso.
+:::
+
+---
+
+## La Instrucción `if / else`
+
+::: {.num-seccion}
+04
+:::
+
+:::: {.columns}
+::: {.column width="55%"}
+
+El bloque `else` define qué ocurre cuando la condición del `if` es **falsa**.
+
+::: {.sintaxis}
+`if` condición`:`
+    bloque A  (True)
+`else:`
+    bloque B  (False)
+:::
+
+- **Siempre** se ejecuta exactamente uno de los dos bloques
+- `else` **no lleva condición propia**
+- Garantiza una respuesta para **cualquier caso**
+
+:::
+::: {.column width="45%"}
+
+```{mermaid}
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#02FF7A',
+  'primaryTextColor': '#000000',
+  'primaryBorderColor': '#000000',
+  'lineColor': '#000000',
+  'fontSize': '15px'
+}}}%%
+flowchart TD
+    A([Inicio]) --> B{condición}
+    B -->|Verdadero| C[Bloque if]
+    B -->|Falso| D[Bloque else]
+    C --> E([Continúa])
+    D --> E
+    style B fill:#02FF7A,stroke:#000000,color:#000000
+    style A fill:#000000,stroke:#000000,color:#ffffff
+    style E fill:#000000,stroke:#000000,color:#ffffff
+    style C fill:#e6fff2,stroke:#02FF7A,color:#000000
+    style D fill:#fff0f0,stroke:#e53e3e,color:#000000
+```
+
+:::
+::::
+
+---
+
+## Ejemplo 2 — Gatos o Perros
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** El programa pregunta la preferencia del usuario y responde en consecuencia.
+
+```python
+# Traducido y adaptado desde ejemplo2.py
+preferencia = input("¿Eres fanático de los gatos o de los perros?: ")
+
+if preferencia == "gatos":
+    print("¡Miau!")
+else:
+    print("¡Guau!")
+```
+
+::: {.caja-correcta}
+**Posibles resultados:**
+→ Si el usuario escribe `"gatos"` → imprime `¡Miau!`
+→ Cualquier otra respuesta → imprime `¡Guau!`
+:::
+
+---
+
+## La Indentación en Python
+
+::: {.num-seccion}
+05
+:::
+
+La **indentación** en Python **no es opcional**: es parte de la sintaxis y define qué instrucciones pertenecen a un bloque.
+
+:::: {.columns}
+::: {.column width="48%"}
+
+::: {.caja-error}
+❌ **Sin indentación — Error**
+```python
+if edad >= 18:
+print("Eres mayor de edad")
+# IndentationError
+```
+:::
+
+:::
+::: {.column width="48%"}
+
+::: {.caja-correcta}
+✅ **Con indentación correcta**
+```python
+if edad >= 18:
+    print("Eres mayor de edad")
+    # 4 espacios obligatorios
+```
+:::
+
+:::
+::::
+
+**Reglas de oro:**
+
+- Usa **4 espacios** por nivel de indentación (estándar PEP 8)
+- Sé **consistente**: no mezcles tabs y espacios en el mismo archivo
+- Todo el bloque debe tener la **misma sangría**
+
+---
+
+## Errores Comunes de Indentación
+
+::: {.num-seccion}
+⚠️
+:::
+
+:::: {.columns}
+::: {.column width="48%"}
+
+::: {.caja-error}
+❌ **Sangría inconsistente**
+```python
+if puntaje > 50:
+    print("Aprobado")
+  print("¡Felicidades!")
+# IndentationError
+```
+:::
+
+::: {.caja-error}
+❌ **Falta el `:` al final**
+```python
+if puntaje > 50
+    print("Aprobado")
+# SyntaxError
+```
+:::
+
+:::
+::: {.column width="48%"}
+
+::: {.caja-correcta}
+✅ **Correcto**
+```python
+if puntaje > 50:
+    print("Aprobado")
+    print("¡Felicidades!")
+```
+:::
+
+::: {.caja-correcta}
+✅ **Con `else` correcto**
+```python
+if puntaje > 50:
+    print("Aprobado")
+else:
+    print("Reprobado")
+```
+:::
+
+:::
+::::
+
+---
+
+## La Instrucción `if / elif / else`
+
+::: {.num-seccion}
+06
+:::
+
+:::: {.columns}
+::: {.column width="55%"}
+
+`elif` (*else if*) permite evaluar **múltiples condiciones** en cadena.
+
+::: {.sintaxis}
+`if` condición1`:`
+    bloque A
+`elif` condición2`:`
+    bloque B
+`elif` condición3`:`
+    bloque C
+`else:`
+    bloque D
+:::
+
+:::
+::: {.column width="45%"}
+
+**Reglas clave:**
+
+- Python evalúa de **arriba hacia abajo**
+- Se ejecuta **solo el primer bloque** cuya condición sea `True`
+- El `else` captura **todos los casos no cubiertos**
+- Se pueden encadenar **tantos `elif`** como se necesite
+- El `else` es **opcional**, pero recomendable
+
+:::
+::::
+
+---
+
+## Ejemplo 3 — Clasificación por Edad
+
+::: {.num-seccion}
+🐍
+:::
+
+```python
+# ejemplo4.py — traducido y corregido
+edad = int(input("Ingresa tu edad: "))
+
+if edad < 13:
+    print("Eres un niño o niña")
+elif edad < 20:
+    print("Eres un adolescente")
+elif edad < 65:
+    print("Eres un adulto")
+else:                              # ← Corrección aplicada
+    print("Eres un adulto mayor")
+```
+
+::: {.caja-correcta}
+**Corrección:** El `elif edad >= 65:` original fue reemplazado por `else:`. Esto es más robusto: captura cualquier valor ≥ 65 y maneja valores inesperados (p. ej., edades negativas).
+:::
+
+---
+
+## Ejemplo 4 — Días de la Semana
+
+::: {.num-seccion}
+🐍
+:::
+
+```python
+# ejemplo5.py — corregido
+dia = int(input("Ingresa un número del 1 al 7 para el día de la semana: "))
+
+if dia == 1:
+    print("Lunes")
+elif dia == 2:
+    print("Martes")
+elif dia == 3:
+    print("Miércoles")
+elif dia == 4:
+    print("Jueves")
+elif dia == 5:
+    print("Viernes")
+elif dia == 6:
+    print("Sábado")
+elif dia == 7:
+    print("Domingo")
+else:
+    print("Número de día inválido")    # ← Corrección aplicada
+```
+
+::: {.caja-correcta}
+**Corrección:** Se agregó `else` al final. Sin él, ingresar un número fuera del rango 1–7 no produce ningún mensaje. Esto es una falla de **validación de entrada**.
+:::
+
+---
+
+## Condicionales Anidados
+
+::: {.num-seccion}
+07
+:::
+
+Un condicional **anidado** es un `if` dentro de otro `if`. Permite tomar decisiones en **múltiples niveles**.
+
+```python
+if condición_externa:
+    if condición_interna:
+        bloque A        # ambas condiciones son True
+    else:
+        bloque B        # solo la externa es True
+else:
+    bloque C            # la condición externa es False
+```
+
+::: {.caja-correcta}
+**Regla práctica:** Cada nivel de anidamiento agrega **4 espacios** de indentación. Se recomienda no superar **3 niveles** de anidamiento para mantener la legibilidad del código.
+:::
+
+---
+
+## Ejemplo 5 — Validación Académica
+
+::: {.num-seccion}
+🐍
+:::
+
+```python
+# ejemplo4-7e4f160a.py — adaptado
+nota_presentacion = int(input("Ingresa tu nota de presentación (1-7): "))
+asistencia        = int(input("Ingresa tu asistencia (0-100): "))
+
+if nota_presentacion >= 4:
+    if asistencia >= 70:
+        print("Aprobado")
+    else:
+        print("Habla con tu profesor para revisar tu situación")
+else:
+    print("Reprobado")
+```
+
+::: {.caja-correcta}
+**Lógica:** Solo se evalúa la asistencia si la nota de presentación es suficiente (≥ 4). Si la nota no alcanza el mínimo, el resultado es directo: reprobado.
+:::
+
+---
+
+## Ejemplo 6 — Condicional Anidado con Generaciones
+
+::: {.num-seccion}
+🐍
+:::
+
+```python
+# ejemplo3-81b7d10b.py — Clasificación por generación
+anio = int(input("Ingresa tu año de nacimiento: "))
+
+if 1965 <= anio <= 1980:
+    gen = "Generación X"
+elif 1981 <= anio <= 1996:
+    gen = "Millennials"
+elif 1997 <= anio <= 2012:
+    gen = "Generación Z"
+elif anio >= 2013:
+    gen = "Generación Alfa"
+else:
+    gen = "Generación no identificada"
+
+print(f"Perteneces a la {gen}")
+```
+
+::: {.caja-correcta}
+**Nota:** Python permite condiciones del tipo `1965 <= anio <= 1980` (rango inclusivo), equivalente a `anio >= 1965 and anio <= 1980`.
+:::
+
+---
+
+## Expresiones Condicionales
+
+::: {.num-seccion}
+08
+:::
+
+Python permite escribir condiciones simples en **una sola línea** usando la **expresión condicional** (también llamada *operador ternario*):
+
+::: {.sintaxis}
+variable = valor_si_true  `if`  condición  `else`  valor_si_false
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Forma tradicional:**
+```python
+if edad >= 18:
+    estado = "mayor de edad"
+else:
+    estado = "menor de edad"
+```
+
+:::
+::: {.column width="50%"}
+
+**Expresión condicional:**
+```python
+estado = "mayor de edad" \
+         if edad >= 18    \
+         else "menor de edad"
+```
+
+:::
+::::
+
+::: {.caja-correcta}
+Útil para **asignaciones simples**. Evitar en lógica compleja, ya que reduce la legibilidad.
+:::
+
+---
+
+## Ejemplo 7 — Operador Ternario en Práctica
+
+::: {.num-seccion}
+🐍
+:::
+
+```python
+# Verificar si un número es par o impar
+numero  = int(input("Ingresa un número entero: "))
+paridad = "par" if numero % 2 == 0 else "impar"
+print(f"El número {numero} es {paridad}.")
+```
+
+```python
+# Verificar mayoría de edad
+edad   = int(input("Ingresa tu edad: "))
+estado = "mayor de edad" if edad >= 18 else "menor de edad"
+print(f"Eres {estado}.")
+```
+
+```python
+# Comparar dos números (ejemplo1-06d421ea.py — traducido)
+a = int(input("Ingresa un número entero: "))
+b = int(input("Ingresa otro número entero: "))
+
+if b > a:
+    print(f"{b} es mayor que {a}: {b} > {a}")
+elif a > b:
+    print(f"{a} es mayor que {b}: {a} > {b}")
+else:
+    print(f"{a} es igual a {b}: {a} == {b}")
+```
+
+---
+
+## Buenas Prácticas
+
+::: {.num-seccion}
+09
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**✅ Hacer:**
+
+- Usar **4 espacios** para la indentación (nunca tabs)
+- Incluir `else` para manejar **casos no previstos**
+- Escribir condiciones **claras y legibles**
+- Limitar el anidamiento a **máximo 3 niveles**
+- Usar `elif` en lugar de `if` anidados cuando sea posible
+- Validar las **entradas del usuario** antes de procesarlas
+
+:::
+::: {.column width="50%"}
+
+**❌ Evitar:**
+
+- Mezclar **tabs y espacios** en el mismo archivo
+- Condiciones innecesariamente complejas en una línea
+- Olvidar los **dos puntos `:`** al final del `if`/`elif`/`else`
+- Usar operador ternario para **lógica de múltiples pasos**
+- Dejar bloques vacíos (usar `pass` si es necesario)
+- No manejar entradas **fuera del rango esperado**
+
+:::
+::::
+
+---
+
+## Resumen de la Unidad
+
+::: {.num-seccion}
+10
+:::
+
+| Estructura | Uso principal |
+|:-----------|:--------------|
+| `if` | Ejecuta un bloque **solo si** la condición es `True` |
+| `if / else` | Elige entre **dos caminos** posibles |
+| `if / elif / else` | Elige entre **múltiples caminos** posibles |
+| Anidados | Condiciones **dentro de condiciones** |
+| Ternario `x if c else y` | Asignación condicional en **una línea** |
+
+::: {.caja-correcta}
+**Recuerda:** La indentación en Python es **parte de la sintaxis**. Un error de indentación produce `IndentationError` e impide ejecutar el programa.
+:::
+
+---
+
+## {background-color="#000000"}
+
+<br><br><br>
+
+::: {style="text-align:center;"}
+
+[**Muchas gracias.**]{style="font-family:'EB Garamond',serif; font-size:3.2em; color:white; font-weight:700; display:block;"}
+
+[Fundamentos de Programación]{style="font-family:'Rubik',sans-serif; font-size:1em; color:#02FF7A; display:block; margin-top:22px;"}
+
+[Universidad Alberto Hurtado]{style="font-family:'Rubik',sans-serif; font-size:0.85em; color:rgba(255,255,255,0.65); display:block; margin-top:10px;"}
+
+<br>
+
+[Universidad para *el bien común*]{style="font-family:'Rubik',sans-serif; font-size:0.65em; color:rgba(255,255,255,0.4); display:block; margin-top:16px; font-style:italic;"}
+
+:::

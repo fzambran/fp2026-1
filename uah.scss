@@ -1,0 +1,360 @@
+/*-- scss:defaults --*/
+
+/*
+  Tema UAH — Quarto RevealJS
+  Identidad Visual Universidad Alberto Hurtado
+  Colores: #000000 (negro), #FFFFFF (blanco), #02FF7A (verde institucional)
+  Tipografías: EB Garamond · Frank Ruhl Libre · Rubik
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Frank+Ruhl+Libre:wght@300;400;700&family=Rubik:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* Variables de tema Quarto */
+$body-bg:                        #ffffff;
+$body-color:                     #000000;
+$link-color:                     #02FF7A;
+$presentation-heading-color:     #000000;
+$font-family-sans-serif:         'Frank Ruhl Libre', 'Georgia', serif;
+$presentation-font-size-root:    28px;
+$presentation-heading-font:      'EB Garamond', 'Garamond', serif;
+$presentation-heading-font-weight: 700;
+$code-block-font-size:           0.72em;
+
+/*-- scss:rules --*/
+
+/* ─── Variables UAH ─────────────────────────────────────────── */
+$uah-green:  #02FF7A;
+$uah-black:  #000000;
+$uah-white:  #FFFFFF;
+$uah-dark:   #1a1a1a;
+$uah-code-bg: #1e1e1e;
+
+/* ─── Franja verde derecha en slides de contenido ───────────── */
+.reveal .slides section {
+  border-right: 6px solid $uah-green;
+  box-sizing: border-box;
+}
+
+/* Quitar franja en slides oscuros */
+.reveal .slides section[data-background-color="#000000"],
+.reveal .slides section[data-background-color="#0d0d0d"],
+.reveal .slides section[data-background-color="#1a1a1a"] {
+  border-right: none;
+}
+
+/* ─── Slide de título (portada) ─────────────────────────────── */
+#title-slide {
+  background-color: $uah-black !important;
+  border-right: none !important;
+  text-align: left !important;
+
+  h1.title {
+    font-family:   'EB Garamond', serif !important;
+    font-size:     2.2em !important;
+    font-weight:   700 !important;
+    color:         $uah-white !important;
+    text-align:    left !important;
+    line-height:   1.1;
+    margin-bottom: 0.25em;
+  }
+
+  p.subtitle {
+    font-family:   'EB Garamond', serif !important;
+    font-size:     1.45em !important;
+    color:         $uah-green !important;
+    font-weight:   400 !important;
+    text-align:    left !important;
+    font-style:    normal !important;
+    margin-bottom: 1.2em;
+  }
+
+  p.author {
+    font-family: 'Rubik', sans-serif !important;
+    font-size:   0.82em !important;
+    color:       $uah-white !important;
+    text-align:  left !important;
+    margin:      0.15em 0;
+  }
+
+  p.institute {
+    font-family: 'Rubik', sans-serif !important;
+    font-size:   0.78em !important;
+    color:       rgba(255,255,255,0.75) !important;
+    text-align:  left !important;
+    margin:      0.15em 0;
+  }
+
+  p.date {
+    font-family: 'Rubik', sans-serif !important;
+    font-size:   0.72em !important;
+    color:       rgba(255,255,255,0.55) !important;
+    text-align:  left !important;
+    margin-top:  0.6em;
+  }
+}
+
+/* ─── Títulos de slide (h2) ──────────────────────────────────── */
+.reveal h2 {
+  font-family:    'EB Garamond', serif;
+  font-size:      1.55em;
+  font-weight:    700;
+  color:          $uah-black;
+  border-bottom:  2px solid $uah-green;
+  padding-bottom: 5px;
+  margin-bottom:  16px;
+  text-align:     left;
+  text-shadow:    none;
+}
+
+/* h2 sobre fondo oscuro */
+.reveal .slides section[data-background-color="#000000"] h2,
+.reveal .slides section[data-background-color="#0d0d0d"] h2 {
+  color:              $uah-white;
+  border-bottom-color: $uah-green;
+}
+
+/* ─── Subtítulos (h3) ────────────────────────────────────────── */
+.reveal h3 {
+  font-family:     'Frank Ruhl Libre', serif;
+  font-size:       1.05em;
+  font-weight:     700;
+  color:           $uah-black;
+  text-decoration: underline;
+  text-shadow:     none;
+}
+
+/* ─── Texto de cuerpo ─────────────────────────────────────────── */
+.reveal p,
+.reveal li {
+  font-family: 'Frank Ruhl Libre', serif;
+  line-height: 1.5;
+  font-size:   0.88em;
+}
+
+.reveal strong {
+  font-weight: 700;
+}
+
+.reveal em {
+  font-style: italic;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────── */
+.reveal .footer {
+  font-family: 'Rubik', sans-serif !important;
+  font-size:   0.42em !important;
+  color:       rgba(0,0,0,0.65);
+  padding-bottom: 6px;
+}
+
+/* ─── Número de diapositiva ──────────────────────────────────── */
+.reveal .slide-number {
+  font-family: 'Rubik', sans-serif;
+  font-size:   0.62em;
+  font-weight: 700;
+  color:       $uah-green;
+  background:  transparent;
+  right:       16px;
+  bottom:      12px;
+}
+
+/* ─── Bloques de código ──────────────────────────────────────── */
+.reveal pre {
+  background-color: $uah-code-bg !important;
+  border-left:      4px solid $uah-green;
+  border-radius:    6px;
+  width:            96% !important;
+  margin:           6px auto !important;
+  box-shadow:       0 3px 14px rgba(0,0,0,0.25);
+  padding:          14px 16px !important;
+}
+
+.reveal pre code.sourceCode {
+  font-size:   0.82em !important;
+  line-height: 1.58;
+  color:       #f8f8f2 !important;
+  background:  transparent !important;
+  padding:     0 !important;
+}
+
+/* Código en línea */
+.reveal code:not(.sourceCode) {
+  background-color: rgba(2, 255, 122, 0.14);
+  color:            #005c28;
+  padding:          1px 5px;
+  border-radius:    3px;
+  font-size:        0.9em;
+  font-family:      'Courier New', 'Consolas', monospace;
+}
+
+/* ─── Listas ──────────────────────────────────────────────────── */
+.reveal ul {
+  margin-left:  0.6em;
+  padding-left: 0;
+}
+
+.reveal ul li {
+  list-style:    none;
+  margin-bottom: 0.42em;
+  padding-left:  1.4em;
+  position:      relative;
+}
+
+.reveal ul li::before {
+  content:     "▸";
+  color:       $uah-green;
+  font-weight: 700;
+  position:    absolute;
+  left:        0;
+}
+
+.reveal ol li {
+  margin-bottom: 0.42em;
+}
+
+/* ─── Citas / Blockquote ──────────────────────────────────────── */
+.reveal blockquote {
+  border-left: 3px solid $uah-green;
+  background:  rgba(2, 255, 122, 0.06);
+  padding:     8px 16px;
+  font-style:  normal;
+  width:       95%;
+  margin:      10px auto;
+  color:       $uah-black;
+  box-shadow:  none;
+}
+
+/* ─── Tablas ──────────────────────────────────────────────────── */
+.reveal table {
+  font-size:       0.8em;
+  border-collapse: collapse;
+  width:           95%;
+  margin:          0 auto;
+}
+
+.reveal table th {
+  background-color: $uah-black;
+  color:            $uah-white;
+  padding:          8px 14px;
+  font-family:      'Rubik', sans-serif;
+  font-weight:      700;
+  text-align:       left;
+}
+
+.reveal table td {
+  padding:     6px 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  text-align:  left;
+}
+
+.reveal table tr:nth-child(even) td {
+  background-color: rgba(2, 255, 122, 0.06);
+}
+
+/* ─── Diagrama Mermaid ─────────────────────────────────────────── */
+.reveal .mermaid {
+  font-family: 'Rubik', sans-serif !important;
+  font-size:   0.8em;
+}
+
+/* ─── Clases personalizadas UAH ──────────────────────────────── */
+
+/* Número de sección grande en verde */
+.num-seccion {
+  font-family:  'Rubik', sans-serif;
+  font-size:    3.2em;
+  font-weight:  700;
+  color:        $uah-green;
+  position:     absolute;
+  top:          8px;
+  right:        28px;
+  line-height:  1;
+  z-index:      10;
+}
+
+/* Caja correcta (verde) */
+.caja-correcta {
+  background-color: rgba(2, 255, 122, 0.1);
+  border-left:      4px solid $uah-green;
+  border-radius:    4px;
+  padding:          10px 14px;
+  margin:           8px 0;
+  font-size:        0.82em;
+  line-height:      1.55;
+  color:            $uah-black;
+
+  code {
+    background-color: rgba(2, 255, 122, 0.2);
+    color: #004d1a;
+  }
+}
+
+/* Caja de error (rojo) */
+.caja-error {
+  background-color: rgba(255, 68, 68, 0.08);
+  border-left:      4px solid #e53e3e;
+  border-radius:    4px;
+  padding:          10px 14px;
+  margin:           8px 0;
+  font-size:        0.82em;
+  line-height:      1.55;
+  color:            $uah-black;
+}
+
+/* Caja de sintaxis (dark, verde) */
+.sintaxis {
+  background-color: $uah-code-bg;
+  color:            $uah-green;
+  border:           2px solid $uah-green;
+  border-radius:    8px;
+  padding:          12px 18px;
+  font-family:      'Courier New', 'Consolas', monospace;
+  font-size:        0.8em;
+  line-height:      1.95;
+  margin:           10px 0;
+  white-space:      pre-line;
+}
+
+/* Texto en verde UAH */
+.verde {
+  color:       $uah-green;
+  font-weight: 700;
+}
+
+/* Texto sobre oscuro */
+.blanco {
+  color: $uah-white;
+}
+
+/* Texto de idea fuerza (slide oscuro) */
+.idea-fuerza-titulo {
+  font-family:     'Rubik', sans-serif;
+  font-size:       2em;
+  font-weight:     700;
+  color:           $uah-green;
+  text-decoration: underline;
+  line-height:     1.2;
+  margin-bottom:   0.5em;
+}
+
+/* Texto de idea fuerza cuerpo */
+.idea-fuerza-texto {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size:   1.2em;
+  color:       $uah-white;
+  line-height: 1.5;
+}
+
+/* Etiqueta de corrección */
+.correccion {
+  background-color: rgba(2, 255, 122, 0.18);
+  border:           1px solid $uah-green;
+  border-radius:    3px;
+  padding:          1px 6px;
+  font-size:        0.75em;
+  font-family:      'Rubik', sans-serif;
+  font-weight:      700;
+  color:            #004d1a;
+  text-transform:   uppercase;
+  letter-spacing:   0.05em;
+}
