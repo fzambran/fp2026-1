@@ -187,6 +187,16 @@ $uah-code-bg: #1e1e1e;
   font-family:      'Courier New', 'Consolas', monospace;
 }
 
+/* Código en línea dentro de .sintaxis (fondo oscuro → texto blanco) */
+.sintaxis code {
+  background-color: transparent !important;
+  color:            #ffffff !important;
+  padding:          0 !important;
+  border-radius:    0 !important;
+  font-size:        inherit !important;
+  font-family:      'Courier New', 'Consolas', monospace;
+}
+
 /* ─── Listas ──────────────────────────────────────────────────── */
 .reveal ul {
   margin-left:  0.6em;

@@ -7,6 +7,8 @@ date: "2026-05-11"
 date-format: "DD-MM-YYYY"
 format:
   revealjs:
+    mermaid:
+      theme: default
     theme: [default, uah.scss]
     slide-number: c/t
     footer: "Universidad para *el bien común*"
@@ -21,7 +23,7 @@ format:
     progress: true
     center: false
     title-slide-attributes:
-      data-background-color: "#000000"
+          data-background-color: "#000000"
 execute:
   echo: true
   eval: false
@@ -71,7 +73,7 @@ En Python existen tres tipos principales:
 
 Es la forma más básica: las instrucciones se ejecutan **una tras otra**, en el orden en que aparecen en el código.
 
-```{python}
+```python
 nombre = input("¿Cuál es tu nombre?: ")
 edad   = int(input("¿Cuántos años tienes?: "))
 print(f"Hola {nombre}, tienes {edad} años.")
@@ -115,13 +117,9 @@ La instrucción `if` ejecuta un bloque de código **solo si la condición es ver
 ::: {.column width="45%"}
 
 ```{mermaid}
-%%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#02FF7A',
-  'primaryTextColor': '#000000',
-  'primaryBorderColor': '#000000',
-  'lineColor': '#000000',
-  'fontSize': '15px'
-}}}%%
+%%| fig-format: svg
+%%| fig-width: 6
+%%| fig-height: 5
 flowchart TD
     A([Inicio]) --> B{condición}
     B -->|Verdadero| C[Bloque if]
@@ -147,7 +145,7 @@ flowchart TD
 **Contexto:** Un sistema pide el nombre del usuario y verifica si tiene acceso.
 
 ```python
-# Traducido y adaptado desde ejemplo1.py
+# ejemplo1.py
 mi_nombre = input("¿Cuál es tu nombre?: ")
 
 if mi_nombre == "Felipe":
@@ -224,7 +222,7 @@ flowchart TD
 **Contexto:** El programa pregunta la preferencia del usuario y responde en consecuencia.
 
 ```python
-# Traducido y adaptado desde ejemplo2.py
+# ejemplo2.py
 preferencia = input("¿Eres fanático de los gatos o de los perros?: ")
 
 if preferencia == "gatos":
@@ -384,7 +382,7 @@ else:
 :::
 
 ```python
-# ejemplo4.py — traducido y corregido
+# ejemplo3.py
 edad = int(input("Ingresa tu edad: "))
 
 if edad < 13:
@@ -393,7 +391,7 @@ elif edad < 20:
     print("Eres un adolescente")
 elif edad < 65:
     print("Eres un adulto")
-else:                              # ← Corrección aplicada
+else:                             
     print("Eres un adulto mayor")
 ```
 
@@ -410,7 +408,7 @@ else:                              # ← Corrección aplicada
 :::
 
 ```python
-# ejemplo5.py — corregido
+# ejemplo4.py 
 dia = int(input("Ingresa un número del 1 al 7 para el día de la semana: "))
 
 if dia == 1:
@@ -428,7 +426,7 @@ elif dia == 6:
 elif dia == 7:
     print("Domingo")
 else:
-    print("Número de día inválido")    # ← Corrección aplicada
+    print("Número de día inválido")    
 ```
 
 ::: {.caja-correcta}
@@ -468,7 +466,7 @@ else:
 :::
 
 ```python
-# ejemplo4-7e4f160a.py — adaptado
+# ejemplo5.py
 nota_presentacion = int(input("Ingresa tu nota de presentación (1-7): "))
 asistencia        = int(input("Ingresa tu asistencia (0-100): "))
 
@@ -487,14 +485,14 @@ else:
 
 ---
 
-## Ejemplo 6 — Condicional Anidado con Generaciones
+## Ejemplo 6 — Clasificación por Generación
 
 ::: {.num-seccion}
 🐍
 :::
 
 ```python
-# ejemplo3-81b7d10b.py — Clasificación por generación
+# ejemplo6.py
 anio = int(input("Ingresa tu año de nacimiento: "))
 
 if 1965 <= anio <= 1980:
@@ -580,7 +578,7 @@ print(f"Eres {estado}.")
 ```
 
 ```python
-# Comparar dos números (ejemplo1-06d421ea.py — traducido)
+# Comparar dos números
 a = int(input("Ingresa un número entero: "))
 b = int(input("Ingresa otro número entero: "))
 
