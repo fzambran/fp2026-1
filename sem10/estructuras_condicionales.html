@@ -98,7 +98,7 @@
     code span.vs { color: #e6db74; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="estructuras_condicionales_files/libs/revealjs/dist/theme/quarto-a2c6419241e528edc035e212e8192883.css">
+  <link rel="stylesheet" href="estructuras_condicionales_files/libs/revealjs/dist/theme/quarto-eb6f4e4a3981eb2a3d4df2d10e1d8e89.css">
   <link href="estructuras_condicionales_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="estructuras_condicionales_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="estructuras_condicionales_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -247,10 +247,12 @@ Felipe Zambrano B.
 <p>02</p>
 </div>
 <p>Es la forma más básica: las instrucciones se ejecutan <strong>una tras otra</strong>, en el orden en que aparecen en el código.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>nombre <span class="op">=</span> <span class="bu">input</span>(<span class="st">"¿Cuál es tu nombre?: "</span>)</span>
+<div id="84494089" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>nombre <span class="op">=</span> <span class="bu">input</span>(<span class="st">"¿Cuál es tu nombre?: "</span>)</span>
 <span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>edad   <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"¿Cuántos años tienes?: "</span>))</span>
 <span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Hola </span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss">, tienes </span><span class="sc">{</span>edad<span class="sc">}</span><span class="ss"> años."</span>)</span>
 <span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fin del programa."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <ul>
 <li>El programa <strong>siempre</strong> sigue el mismo camino</li>
 <li>No hay bifurcaciones ni repeticiones</li>
@@ -278,23 +280,25 @@ Felipe Zambrano B.
 <li>Si es <code>False</code> → omite el bloque y continúa</li>
 </ol>
 </div><div class="column" style="width:45%;">
-<div class="cell" data-reveal="true" data-fig-format="svg" data-fig-width="6" data-fig-height="5" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
-<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>    A([Inicio]) --&gt; B{condición}</span>
-<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    B --&gt;|Verdadero| C[Bloque if]</span>
-<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a>    B --&gt;|Falso| D([Continúa])</span>
-<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>    C --&gt; D</span>
-<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a>    style B fill:#02FF7A,stroke:#000000,color:#000000</span>
-<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a>    style A fill:#000000,stroke:#000000,color:#ffffff</span>
-<span id="cb2-8"><a href="" aria-hidden="true" tabindex="-1"></a>    style D fill:#000000,stroke:#000000,color:#ffffff</span>
-<span id="cb2-9"><a href="" aria-hidden="true" tabindex="-1"></a>    style C fill:#e6fff2,stroke:#02FF7A,color:#000000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="mermaid-mover">
+<div class="cell" data-reveal="true" data-eval="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
-
+<pre class="mermaid mermaid-js">flowchart TD
+    A([Inicio]) --&gt; B{condición}
+    B --&gt;|Verdadero| C[Bloque if]
+    B --&gt;|Falso| D([Continúa])
+    C --&gt; D
+    style B fill:#02FF7A,stroke:#000000,color:#000000
+    style A fill:#000000,stroke:#000000,color:#ffffff
+    style D fill:#000000,stroke:#000000,color:#ffffff
+    style C fill:#e6fff2,stroke:#02FF7A,color:#000000
+</pre>
 </div>
 <p></p></figure><p></p>
+</div>
 </div>
 </div>
 </div>
@@ -306,15 +310,15 @@ Felipe Zambrano B.
 <p>🐍</p>
 </div>
 <p><strong>Contexto:</strong> Un sistema pide el nombre del usuario y verifica si tiene acceso.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo1.py</span></span>
-<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>mi_nombre <span class="op">=</span> <span class="bu">input</span>(<span class="st">"¿Cuál es tu nombre?: "</span>)</span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> mi_nombre <span class="op">==</span> <span class="st">"Felipe"</span>:</span>
-<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Bienvenido!"</span>)</span>
-<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Tienes acceso al sistema."</span>)</span>
-<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb3-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¿Quién eres tú?"</span>)</span>
-<span id="cb3-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Acceso denegado."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo1.py</span></span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>mi_nombre <span class="op">=</span> <span class="bu">input</span>(<span class="st">"¿Cuál es tu nombre?: "</span>)</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> mi_nombre <span class="op">==</span> <span class="st">"Felipe"</span>:</span>
+<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Bienvenido!"</span>)</span>
+<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Tienes acceso al sistema."</span>)</span>
+<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb2-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¿Quién eres tú?"</span>)</span>
+<span id="cb2-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Acceso denegado."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="caja-correcta">
 <p><strong>Análisis:</strong> Si el nombre ingresado es <code>"Felipe"</code> → saluda y da acceso. Cualquier otro nombre → deniega el acceso.</p>
 </div>
@@ -336,32 +340,27 @@ Felipe Zambrano B.
 <li>Garantiza una respuesta para <strong>cualquier caso</strong></li>
 </ul>
 </div><div class="column" style="width:45%;">
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>%%{init: {'theme': 'base', 'themeVariables': {</span>
-<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>  'primaryColor': '#02FF7A',</span>
-<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>  'primaryTextColor': '#000000',</span>
-<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>  'primaryBorderColor': '#000000',</span>
-<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a>  'lineColor': '#000000',</span>
-<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a>  'fontSize': '15px'</span>
-<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>}}}%%</span>
-<span id="cb4-8"><a href="" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
-<span id="cb4-9"><a href="" aria-hidden="true" tabindex="-1"></a>    A([Inicio]) --&gt; B{condición}</span>
-<span id="cb4-10"><a href="" aria-hidden="true" tabindex="-1"></a>    B --&gt;|Verdadero| C[Bloque if]</span>
-<span id="cb4-11"><a href="" aria-hidden="true" tabindex="-1"></a>    B --&gt;|Falso| D[Bloque else]</span>
-<span id="cb4-12"><a href="" aria-hidden="true" tabindex="-1"></a>    C --&gt; E([Continúa])</span>
-<span id="cb4-13"><a href="" aria-hidden="true" tabindex="-1"></a>    D --&gt; E</span>
-<span id="cb4-14"><a href="" aria-hidden="true" tabindex="-1"></a>    style B fill:#02FF7A,stroke:#000000,color:#000000</span>
-<span id="cb4-15"><a href="" aria-hidden="true" tabindex="-1"></a>    style A fill:#000000,stroke:#000000,color:#ffffff</span>
-<span id="cb4-16"><a href="" aria-hidden="true" tabindex="-1"></a>    style E fill:#000000,stroke:#000000,color:#ffffff</span>
-<span id="cb4-17"><a href="" aria-hidden="true" tabindex="-1"></a>    style C fill:#e6fff2,stroke:#02FF7A,color:#000000</span>
-<span id="cb4-18"><a href="" aria-hidden="true" tabindex="-1"></a>    style D fill:#fff0f0,stroke:#e53e3e,color:#000000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="mermaid-mover">
+<div class="cell" data-reveal="true" data-eval="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
-
+<pre class="mermaid mermaid-js">flowchart TD
+    A([Inicio]) --&gt; B{condición}
+    B --&gt;|Verdadero| C[Bloque if]
+    B --&gt;|Falso| D[Bloque else]
+    C --&gt; E([Continúa])
+    D --&gt; E
+    style B fill:#02FF7A,stroke:#000000,color:#000000
+    style A fill:#000000,stroke:#000000,color:#ffffff
+    style E fill:#000000,stroke:#000000,color:#ffffff
+    style C fill:#e6fff2,stroke:#02FF7A,color:#000000
+    style D fill:#fff0f0,stroke:#e53e3e,color:#000000
+</pre>
 </div>
 <p></p></figure><p></p>
+</div>
 </div>
 </div>
 </div>
@@ -373,13 +372,13 @@ Felipe Zambrano B.
 <p>🐍</p>
 </div>
 <p><strong>Contexto:</strong> El programa pregunta la preferencia del usuario y responde en consecuencia.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo2.py</span></span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>preferencia <span class="op">=</span> <span class="bu">input</span>(<span class="st">"¿Eres fanático de los gatos o de los perros?: "</span>)</span>
-<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> preferencia <span class="op">==</span> <span class="st">"gatos"</span>:</span>
-<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Miau!"</span>)</span>
-<span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Guau!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo2.py</span></span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>preferencia <span class="op">=</span> <span class="bu">input</span>(<span class="st">"¿Eres fanático de los gatos o de los perros?: "</span>)</span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> preferencia <span class="op">==</span> <span class="st">"gatos"</span>:</span>
+<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Miau!"</span>)</span>
+<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Guau!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="caja-correcta">
 <p><strong>Posibles resultados:</strong> → Si el usuario escribe <code>"gatos"</code> → imprime <code>¡Miau!</code> → Cualquier otra respuesta → imprime <code>¡Guau!</code></p>
 </div>
@@ -394,16 +393,16 @@ Felipe Zambrano B.
 <div class="column" style="width:48%;">
 <div class="caja-error">
 <p>❌ <strong>Sin indentación — Error</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
-<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Eres mayor de edad"</span>)</span>
-<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># IndentationError</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Eres mayor de edad"</span>)</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># IndentationError</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:48%;">
 <div class="caja-correcta">
 <p>✅ <strong>Con indentación correcta</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
-<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Eres mayor de edad"</span>)</span>
-<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4 espacios obligatorios</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Eres mayor de edad"</span>)</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4 espacios obligatorios</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
 <p><strong>Reglas de oro:</strong></p>
@@ -422,30 +421,30 @@ Felipe Zambrano B.
 <div class="column" style="width:48%;">
 <div class="caja-error">
 <p>❌ <strong>Sangría inconsistente</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> puntaje <span class="op">&gt;</span> <span class="dv">50</span>:</span>
-<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Aprobado"</span>)</span>
-<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"¡Felicidades!"</span>)</span>
-<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># IndentationError</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> puntaje <span class="op">&gt;</span> <span class="dv">50</span>:</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Aprobado"</span>)</span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"¡Felicidades!"</span>)</span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># IndentationError</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="caja-error">
 <p>❌ <strong>Falta el <code>:</code> al final</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> puntaje <span class="op">&gt;</span> <span class="dv">50</span></span>
-<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Aprobado"</span>)</span>
-<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># SyntaxError</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> nota <span class="op">&gt;</span> <span class="dv">4</span></span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Aprobado"</span>)</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># SyntaxError</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:48%;">
 <div class="caja-correcta">
 <p>✅ <strong>Correcto</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> puntaje <span class="op">&gt;</span> <span class="dv">50</span>:</span>
-<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Aprobado"</span>)</span>
-<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Felicidades!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> nota <span class="op">&gt;</span> <span class="dv">4</span>:</span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Aprobado"</span>)</span>
+<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Felicidades!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="caja-correcta">
 <p>✅ <strong>Con <code>else</code> correcto</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> puntaje <span class="op">&gt;</span> <span class="dv">50</span>:</span>
-<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Aprobado"</span>)</span>
-<span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb11-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Reprobado"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> nota <span class="op">&gt;</span> <span class="dv">4</span>:</span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Aprobado"</span>)</span>
+<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Reprobado"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
 </section>
@@ -476,17 +475,17 @@ Felipe Zambrano B.
 <div class="num-seccion">
 <p>🐍</p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo3.py</span></span>
-<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa tu edad: "</span>))</span>
-<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">13</span>:</span>
-<span id="cb12-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Eres un niño o niña"</span>)</span>
-<span id="cb12-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">20</span>:</span>
-<span id="cb12-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Eres un adolescente"</span>)</span>
-<span id="cb12-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">65</span>:</span>
-<span id="cb12-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Eres un adulto"</span>)</span>
-<span id="cb12-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:                             </span>
-<span id="cb12-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Eres un adulto mayor"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo3.py</span></span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa tu edad: "</span>))</span>
+<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">13</span>:</span>
+<span id="cb10-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Eres un niño o niña"</span>)</span>
+<span id="cb10-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">20</span>:</span>
+<span id="cb10-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Eres un adolescente"</span>)</span>
+<span id="cb10-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">65</span>:</span>
+<span id="cb10-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Eres un adulto"</span>)</span>
+<span id="cb10-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:                             </span>
+<span id="cb10-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Eres un adulto mayor"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="caja-correcta">
 <p><strong>Corrección:</strong> El <code>elif edad &gt;= 65:</code> original fue reemplazado por <code>else:</code>. Esto es más robusto: captura cualquier valor ≥ 65 y maneja valores inesperados (p.&nbsp;ej., edades negativas).</p>
 </div>
@@ -496,25 +495,25 @@ Felipe Zambrano B.
 <div class="num-seccion">
 <p>🐍</p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo4.py </span></span>
-<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a>dia <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa un número del 1 al 7 para el día de la semana: "</span>))</span>
-<span id="cb13-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> dia <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb13-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Lunes"</span>)</span>
-<span id="cb13-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">2</span>:</span>
-<span id="cb13-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Martes"</span>)</span>
-<span id="cb13-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">3</span>:</span>
-<span id="cb13-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Miércoles"</span>)</span>
-<span id="cb13-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">4</span>:</span>
-<span id="cb13-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Jueves"</span>)</span>
-<span id="cb13-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">5</span>:</span>
-<span id="cb13-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Viernes"</span>)</span>
-<span id="cb13-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">6</span>:</span>
-<span id="cb13-15"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sábado"</span>)</span>
-<span id="cb13-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">7</span>:</span>
-<span id="cb13-17"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Domingo"</span>)</span>
-<span id="cb13-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb13-19"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Número de día inválido"</span>)    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo4.py </span></span>
+<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>dia <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa un número del 1 al 7 para el día de la semana: "</span>))</span>
+<span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> dia <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb11-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Lunes"</span>)</span>
+<span id="cb11-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb11-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Martes"</span>)</span>
+<span id="cb11-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb11-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Miércoles"</span>)</span>
+<span id="cb11-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">4</span>:</span>
+<span id="cb11-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Jueves"</span>)</span>
+<span id="cb11-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb11-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Viernes"</span>)</span>
+<span id="cb11-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">6</span>:</span>
+<span id="cb11-15"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sábado"</span>)</span>
+<span id="cb11-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> dia <span class="op">==</span> <span class="dv">7</span>:</span>
+<span id="cb11-17"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Domingo"</span>)</span>
+<span id="cb11-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb11-19"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Número de día inválido"</span>)    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="caja-correcta">
 <p><strong>Corrección:</strong> Se agregó <code>else</code> al final. Sin él, ingresar un número fuera del rango 1–7 no produce ningún mensaje. Esto es una falla de <strong>validación de entrada</strong>.</p>
 </div>
@@ -525,13 +524,13 @@ Felipe Zambrano B.
 <p>07</p>
 </div>
 <p>Un condicional <strong>anidado</strong> es un <code>if</code> dentro de otro <code>if</code>. Permite tomar decisiones en <strong>múltiples niveles</strong>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condición_externa:</span>
-<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> condición_interna:</span>
-<span id="cb14-3"><a href="" aria-hidden="true" tabindex="-1"></a>        bloque A        <span class="co"># ambas condiciones son True</span></span>
-<span id="cb14-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb14-5"><a href="" aria-hidden="true" tabindex="-1"></a>        bloque B        <span class="co"># solo la externa es True</span></span>
-<span id="cb14-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb14-7"><a href="" aria-hidden="true" tabindex="-1"></a>    bloque C            <span class="co"># la condición externa es False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condición_externa:</span>
+<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> condición_interna:</span>
+<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a>        bloque A        <span class="co"># ambas condiciones son True</span></span>
+<span id="cb12-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-5"><a href="" aria-hidden="true" tabindex="-1"></a>        bloque B        <span class="co"># solo la externa es True</span></span>
+<span id="cb12-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb12-7"><a href="" aria-hidden="true" tabindex="-1"></a>    bloque C            <span class="co"># la condición externa es False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="caja-correcta">
 <p><strong>Regla práctica:</strong> Cada nivel de anidamiento agrega <strong>4 espacios</strong> de indentación. Se recomienda no superar <strong>3 niveles</strong> de anidamiento para mantener la legibilidad del código.</p>
 </div>
@@ -541,17 +540,17 @@ Felipe Zambrano B.
 <div class="num-seccion">
 <p>🐍</p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo5.py</span></span>
-<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>nota_presentacion <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa tu nota de presentación (1-7): "</span>))</span>
-<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a>asistencia        <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa tu asistencia (0-100): "</span>))</span>
-<span id="cb15-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> nota_presentacion <span class="op">&gt;=</span> <span class="dv">4</span>:</span>
-<span id="cb15-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> asistencia <span class="op">&gt;=</span> <span class="dv">70</span>:</span>
-<span id="cb15-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Aprobado"</span>)</span>
-<span id="cb15-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb15-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Habla con tu profesor para revisar tu situación"</span>)</span>
-<span id="cb15-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb15-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Reprobado"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo5.py</span></span>
+<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a>nota_presentacion <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa tu nota de presentación (1-7): "</span>))</span>
+<span id="cb13-3"><a href="" aria-hidden="true" tabindex="-1"></a>asistencia        <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa tu asistencia (0-100): "</span>))</span>
+<span id="cb13-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> nota_presentacion <span class="op">&gt;=</span> <span class="dv">4</span>:</span>
+<span id="cb13-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> asistencia <span class="op">&gt;=</span> <span class="dv">70</span>:</span>
+<span id="cb13-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Aprobado"</span>)</span>
+<span id="cb13-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb13-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Habla con tu profesor para revisar tu situación"</span>)</span>
+<span id="cb13-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb13-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Reprobado"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="caja-correcta">
 <p><strong>Lógica:</strong> Solo se evalúa la asistencia si la nota de presentación es suficiente (≥ 4). Si la nota no alcanza el mínimo, el resultado es directo: reprobado.</p>
 </div>
@@ -561,21 +560,21 @@ Felipe Zambrano B.
 <div class="num-seccion">
 <p>🐍</p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo6.py</span></span>
-<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a>anio <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa tu año de nacimiento: "</span>))</span>
-<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="dv">1965</span> <span class="op">&lt;=</span> anio <span class="op">&lt;=</span> <span class="dv">1980</span>:</span>
-<span id="cb16-5"><a href="" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">"Generación X"</span></span>
-<span id="cb16-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="dv">1981</span> <span class="op">&lt;=</span> anio <span class="op">&lt;=</span> <span class="dv">1996</span>:</span>
-<span id="cb16-7"><a href="" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">"Millennials"</span></span>
-<span id="cb16-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="dv">1997</span> <span class="op">&lt;=</span> anio <span class="op">&lt;=</span> <span class="dv">2012</span>:</span>
-<span id="cb16-9"><a href="" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">"Generación Z"</span></span>
-<span id="cb16-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> anio <span class="op">&gt;=</span> <span class="dv">2013</span>:</span>
-<span id="cb16-11"><a href="" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">"Generación Alfa"</span></span>
-<span id="cb16-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb16-13"><a href="" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">"Generación no identificada"</span></span>
-<span id="cb16-14"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Perteneces a la </span><span class="sc">{</span>gen<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ejemplo6.py</span></span>
+<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a>anio <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa tu año de nacimiento: "</span>))</span>
+<span id="cb14-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="dv">1965</span> <span class="op">&lt;=</span> anio <span class="op">&lt;=</span> <span class="dv">1980</span>:</span>
+<span id="cb14-5"><a href="" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">"Generación X"</span></span>
+<span id="cb14-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="dv">1981</span> <span class="op">&lt;=</span> anio <span class="op">&lt;=</span> <span class="dv">1996</span>:</span>
+<span id="cb14-7"><a href="" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">"Millennials"</span></span>
+<span id="cb14-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="dv">1997</span> <span class="op">&lt;=</span> anio <span class="op">&lt;=</span> <span class="dv">2012</span>:</span>
+<span id="cb14-9"><a href="" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">"Generación Z"</span></span>
+<span id="cb14-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> anio <span class="op">&gt;=</span> <span class="dv">2013</span>:</span>
+<span id="cb14-11"><a href="" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">"Generación Alfa"</span></span>
+<span id="cb14-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb14-13"><a href="" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">"Generación no identificada"</span></span>
+<span id="cb14-14"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Perteneces a la </span><span class="sc">{</span>gen<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="caja-correcta">
 <p><strong>Nota:</strong> Python permite condiciones del tipo <code>1965 &lt;= anio &lt;= 1980</code> (rango inclusivo), equivalente a <code>anio &gt;= 1965 and anio &lt;= 1980</code>.</p>
 </div>
@@ -592,15 +591,15 @@ Felipe Zambrano B.
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Forma tradicional:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
-<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a>    estado <span class="op">=</span> <span class="st">"mayor de edad"</span></span>
-<span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb17-4"><a href="" aria-hidden="true" tabindex="-1"></a>    estado <span class="op">=</span> <span class="st">"menor de edad"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>    estado <span class="op">=</span> <span class="st">"mayor de edad"</span></span>
+<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb15-4"><a href="" aria-hidden="true" tabindex="-1"></a>    estado <span class="op">=</span> <span class="st">"menor de edad"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
 <p><strong>Expresión condicional:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a>estado <span class="op">=</span> <span class="st">"mayor de edad"</span> <span class="op">\</span></span>
-<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">18</span>    <span class="op">\</span></span>
-<span id="cb18-3"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="cf">else</span> <span class="st">"menor de edad"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a>estado <span class="op">=</span> <span class="st">"mayor de edad"</span> <span class="op">\</span></span>
+<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">18</span>    <span class="op">\</span></span>
+<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="cf">else</span> <span class="st">"menor de edad"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <div class="caja-correcta">
 <p>Útil para <strong>asignaciones simples</strong>. Evitar en lógica compleja, ya que reduce la legibilidad.</p>
@@ -611,24 +610,24 @@ Felipe Zambrano B.
 <div class="num-seccion">
 <p>🐍</p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar si un número es par o impar</span></span>
-<span id="cb19-2"><a href="" aria-hidden="true" tabindex="-1"></a>numero  <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa un número entero: "</span>))</span>
-<span id="cb19-3"><a href="" aria-hidden="true" tabindex="-1"></a>paridad <span class="op">=</span> <span class="st">"par"</span> <span class="cf">if</span> numero <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"impar"</span></span>
-<span id="cb19-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El número </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es </span><span class="sc">{</span>paridad<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar mayoría de edad</span></span>
-<span id="cb20-2"><a href="" aria-hidden="true" tabindex="-1"></a>edad   <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa tu edad: "</span>))</span>
-<span id="cb20-3"><a href="" aria-hidden="true" tabindex="-1"></a>estado <span class="op">=</span> <span class="st">"mayor de edad"</span> <span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">18</span> <span class="cf">else</span> <span class="st">"menor de edad"</span></span>
-<span id="cb20-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Eres </span><span class="sc">{</span>estado<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparar dos números</span></span>
-<span id="cb21-2"><a href="" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa un número entero: "</span>))</span>
-<span id="cb21-3"><a href="" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa otro número entero: "</span>))</span>
-<span id="cb21-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> b <span class="op">&gt;</span> a:</span>
-<span id="cb21-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> es mayor que </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> &gt; </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb21-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> a <span class="op">&gt;</span> b:</span>
-<span id="cb21-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> es mayor que </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> &gt; </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb21-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb21-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> es igual a </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> == </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar si un número es par o impar</span></span>
+<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a>numero  <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa un número entero: "</span>))</span>
+<span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a>paridad <span class="op">=</span> <span class="st">"par"</span> <span class="cf">if</span> numero <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"impar"</span></span>
+<span id="cb17-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El número </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es </span><span class="sc">{</span>paridad<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar mayoría de edad</span></span>
+<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a>edad   <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa tu edad: "</span>))</span>
+<span id="cb18-3"><a href="" aria-hidden="true" tabindex="-1"></a>estado <span class="op">=</span> <span class="st">"mayor de edad"</span> <span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">18</span> <span class="cf">else</span> <span class="st">"menor de edad"</span></span>
+<span id="cb18-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Eres </span><span class="sc">{</span>estado<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparar dos números</span></span>
+<span id="cb19-2"><a href="" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa un número entero: "</span>))</span>
+<span id="cb19-3"><a href="" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingresa otro número entero: "</span>))</span>
+<span id="cb19-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> b <span class="op">&gt;</span> a:</span>
+<span id="cb19-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> es mayor que </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> &gt; </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> a <span class="op">&gt;</span> b:</span>
+<span id="cb19-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> es mayor que </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> &gt; </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb19-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> es igual a </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> == </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="buenas-prácticas" class="slide level2">
 <h2>Buenas Prácticas</h2>

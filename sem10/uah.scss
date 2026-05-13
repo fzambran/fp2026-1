@@ -178,7 +178,22 @@ $uah-code-bg: #1e1e1e;
 }
 
 /* Código en línea */
+/* Se reemplaza esta línea el 13-05-2026
+/* porque sobrepone un cuadro blanco al código de salida
 .reveal code:not(.sourceCode) {
+  background-color: rgba(2, 255, 122, 0.14);
+  color:            #005c28;
+  padding:          1px 5px;
+  border-radius:    3px;
+  font-size:        0.9em;
+  font-family:      'Courier New', 'Consolas', monospace;
+}
+*/
+/* Se incluye este código el 13-05-2026 */
+.reveal p code:not(.sourceCode),
+.reveal li code:not(.sourceCode),
+.reveal td code:not(.sourceCode),
+.reveal th code:not(.sourceCode) {
   background-color: rgba(2, 255, 122, 0.14);
   color:            #005c28;
   padding:          1px 5px;
@@ -293,10 +308,13 @@ $uah-code-bg: #1e1e1e;
   line-height:      1.55;
   color:            $uah-black;
 
+  /* Se elimina este código porque muestra un cuadro 
+  dónde no se observan las líneas blancas
   code {
     background-color: rgba(2, 255, 122, 0.2);
     color: #004d1a;
   }
+  */
 }
 
 /* Caja de error (rojo) */
@@ -367,4 +385,144 @@ $uah-code-bg: #1e1e1e;
   color:            #004d1a;
   text-transform:   uppercase;
   letter-spacing:   0.05em;
+}
+
+.reveal .mermaid-mover {
+  transform: translateX(12rem);
+}
+
+.reveal .slides section {
+  padding-top: 3.5rem;
+}
+
+/* Formato para diagrama de Mermaid */
+.reveal .slides section .mermaid {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+}
+
+.reveal .slides section.slide-diagrama .mermaid {
+  display: flex;
+  justify-content: center;
+}
+
+.reveal .slides section.slide-diagrama .cell-output-display {
+  display: flex;
+  justify-content: center;
+}
+
+/* Se cambia este código el 13-05-2026 por el siguiente 
+para ajustar el tamaño del diagrama
+.reveal .slides section.slide-diagrama .mermaid svg {
+  transform: scale(0.7);
+  transform-origin: top center;
+  font-size: 16px !important;
+}
+*/
+
+/* Se incluye este código para ajustar el tamaño del diagrama de Mermaid */
+.reveal .slides section.slide-diagrama .cell-output-display,
+.reveal .slides section.slide-diagrama .cell-output-display div {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.reveal .slides section.slide-diagrama .cell-output-display {
+  display: flex;
+  justify-content: center;
+}
+
+.reveal .slides section.slide-diagrama .cell-output-display > div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.reveal .slides section.slide-diagrama .cell-output-display svg {
+  width: 380px !important;
+  max-width: none !important;
+  height: auto !important;
+}
+
+/* Caja visible final */
+.reveal .cell-output-stdout pre,
+.reveal div[class*="cell-output"] pre {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  border-left: 5px solid #02ff7a;
+  border-radius: 8px;
+  padding: 0.8rem;
+}
+
+/* Texto blanco */
+.reveal .cell-output-stdout pre,
+.reveal .cell-output-stdout pre code,
+.reveal .cell-output-stdout pre code *,
+.reveal div[class*="cell-output"] pre,
+.reveal div[class*="cell-output"] code,
+.reveal div[class*="cell-output"] code * {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* Centrar texto dentro de los diagramas Mermaid */
+.reveal .mermaid .nodeLabel {
+  text-align: center !important;
+}
+
+.reveal .mermaid .label text {
+  text-anchor: middle !important;
+}
+
+.reveal .mermaid text {
+  dominant-baseline: middle !important;
+}
+
+/* Para que al exportar a PDF no pierda el formato */
+
+/* =========================
+   Número de sección
+========================= */
+
+.reveal .num-seccion {
+  position: absolute;
+  top: 1.2rem;
+  right: 3rem;
+
+  font-size: 4rem;
+  font-weight: 700;
+  color: #02FF7A;
+
+  z-index: 10;
+}
+
+/* =========================
+   Ajuste especial para PDF
+========================= */
+
+@media print {
+
+  .reveal .num-seccion {
+    top: 2.2rem;
+    right: 3rem;
+  }
+
+}
+
+/* Se agrega esta línea para que no se desajuste al exportar a PDF */
+/* Posición normal en pantalla */
+.reveal .num-seccion {
+  position: absolute;
+  top: 1.2rem;
+  right: 3rem;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #02FF7A;
+  z-index: 10;
+}
+
+/* Posición cuando activas Tools > PDF Export Mode */
+html.print-pdf .reveal .num-seccion {
+  top: -1.2rem;
 }

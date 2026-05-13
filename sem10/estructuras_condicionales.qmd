@@ -73,7 +73,7 @@ En Python existen tres tipos principales:
 
 Es la forma más básica: las instrucciones se ejecutan **una tras otra**, en el orden en que aparecen en el código.
 
-```python
+```{python}
 nombre = input("¿Cuál es tu nombre?: ")
 edad   = int(input("¿Cuántos años tienes?: "))
 print(f"Hola {nombre}, tienes {edad} años.")
@@ -113,13 +113,14 @@ La instrucción `if` ejecuta un bloque de código **solo si la condición es ver
 2. Si es `True` → ejecuta el bloque indentado
 3. Si es `False` → omite el bloque y continúa
 
-:::
+::: 
+
 ::: {.column width="45%"}
+<div class="mermaid-mover">
 
 ```{mermaid}
-%%| fig-format: svg
-%%| fig-width: 6
-%%| fig-height: 5
+%%| echo: false
+%%| eval: true
 flowchart TD
     A([Inicio]) --> B{condición}
     B -->|Verdadero| C[Bloque if]
@@ -130,8 +131,10 @@ flowchart TD
     style D fill:#000000,stroke:#000000,color:#ffffff
     style C fill:#e6fff2,stroke:#02FF7A,color:#000000
 ```
+</div>
 
 :::
+
 ::::
 
 ---
@@ -186,15 +189,11 @@ El bloque `else` define qué ocurre cuando la condición del `if` es **falsa**.
 
 :::
 ::: {.column width="45%"}
+<div class="mermaid-mover">
 
 ```{mermaid}
-%%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#02FF7A',
-  'primaryTextColor': '#000000',
-  'primaryBorderColor': '#000000',
-  'lineColor': '#000000',
-  'fontSize': '15px'
-}}}%%
+%%| echo: false
+%%| eval: true
 flowchart TD
     A([Inicio]) --> B{condición}
     B -->|Verdadero| C[Bloque if]
@@ -207,6 +206,7 @@ flowchart TD
     style C fill:#e6fff2,stroke:#02FF7A,color:#000000
     style D fill:#fff0f0,stroke:#e53e3e,color:#000000
 ```
+</div>
 
 :::
 ::::
@@ -304,7 +304,7 @@ if puntaje > 50:
 ::: {.caja-error}
 ❌ **Falta el `:` al final**
 ```python
-if puntaje > 50
+if nota > 4
     print("Aprobado")
 # SyntaxError
 ```
@@ -316,7 +316,7 @@ if puntaje > 50
 ::: {.caja-correcta}
 ✅ **Correcto**
 ```python
-if puntaje > 50:
+if nota > 4:
     print("Aprobado")
     print("¡Felicidades!")
 ```
@@ -325,7 +325,7 @@ if puntaje > 50:
 ::: {.caja-correcta}
 ✅ **Con `else` correcto**
 ```python
-if puntaje > 50:
+if nota > 4:
     print("Aprobado")
 else:
     print("Reprobado")

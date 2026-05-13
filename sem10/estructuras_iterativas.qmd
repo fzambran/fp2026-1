@@ -1,0 +1,714 @@
+---
+title: "Estructuras de Control"
+subtitle: "Iterativas: for, while y contadores"
+author: "Fundamentos de Programación"
+institute: "Universidad Alberto Hurtado"
+date: "2026-05-13"
+date-format: "DD-MM-YYYY"
+format:
+  revealjs:
+    theme: [default, uah.scss]
+    slide-number: c/t
+    footer: "*Universidad para el bien común*"
+    width: 1280
+    height: 720
+    margin: 0.08
+    code-line-numbers: true
+    highlight-style: monokai
+    transition: fade
+    transition-speed: fast
+    controls: true
+    progress: true
+    center: false
+    title-slide-attributes:
+      data-background-color: "#000000"
+execute:
+  echo: true
+  eval: false
+---
+
+## {background-color="#000000"}
+
+<br><br>
+
+::: {style="padding-left: 60px;"}
+
+[RESULTADO DE APRENDIZAJE]{style="font-family:'Rubik',sans-serif; font-size:0.62em; color:#02FF7A; font-weight:700; text-transform:uppercase; letter-spacing:0.12em;"}
+
+<br>
+
+[Diseñar e implementar **ciclos repetitivos** eficientes, utilizando **contadores**, **acumuladores** y **rangos** según sea necesario a través de Python.]{style="font-family:'Frank Ruhl Libre',serif; font-size:1.25em; color:white; line-height:1.5; display:block; max-width:85%;"}
+
+:::
+
+---
+
+## Estructuras Iterativas
+
+::: {.num-seccion}
+01
+:::
+
+Una **estructura iterativa** (o ciclo) permite ejecutar un bloque de código **múltiples veces**, sin necesidad de repetir el código manualmente.
+
+En Python existen dos tipos principales:
+
+- **`for`** — repite un bloque una cantidad **conocida** de veces, o itera sobre una secuencia (lista, rango, texto, etc.)
+- **`while`** — repite un bloque **mientras** se cumpla una condición; se usa cuando no se sabe de antemano cuántas veces iterará
+
+::: {.caja-correcta}
+📌 Ambos ciclos requieren **indentación correcta** — el cuerpo del ciclo debe estar sangrado 4 espacios respecto a la instrucción `for` o `while`.
+:::
+
+---
+
+## El Ciclo `for`
+
+::: {.num-seccion}
+02
+:::
+
+El ciclo `for` recorre **elemento a elemento** una secuencia (lista, rango, cadena, diccionario, etc.).
+
+::: {.sintaxis}
+`for` variable `in` secuencia`:`
+    bloque de código
+    (se repite por cada elemento)
+:::
+
+**¿Cómo funciona?**
+
+1. En cada iteración, `variable` toma el valor del siguiente elemento
+2. Se ejecuta el bloque indentado
+3. Al agotar la secuencia, el ciclo termina
+
+::: {.caja-correcta}
+**Cuándo usar `for`:** cuando conoces la cantidad de iteraciones o tienes una secuencia definida que recorrer.
+:::
+
+---
+
+## Diagrama — Ciclo `for` {.slide-diagrama}
+
+::: {.num-seccion}
+02
+:::
+
+```{mermaid}
+%%| echo: false
+%%| eval: true
+%%| fig-width: 10
+%%| fig-height: 7
+
+%%{init: {
+  "flowchart": {
+    "htmlLabels": false
+  }
+}}%%
+
+flowchart TD
+    A([Inicio]) --> B[variable = primer elemento]
+    B --> C{¿Quedan elementos?}
+    C -->|Si| D[Ejecutar bloque]
+    D --> E[variable = siguiente elemento]
+    E --> C
+    C -->|No| F([Fin del ciclo])
+    style C fill:#02FF7A,stroke:#000000,color:#000000
+    style A fill:#1a1a1a,stroke:#000000,color:#ffffff
+    style F fill:#1a1a1a,stroke:#000000,color:#ffffff
+    style D fill:#e6fff2,stroke:#02FF7A,color:#000000
+    style B fill:#f5f5f5,stroke:#000000,color:#000000
+    style E fill:#f5f5f5,stroke:#000000,color:#000000
+```
+
+---
+
+## Ejemplo 1 — `for` con Lista y `range()`
+
+::: {.num-seccion}
+🐍
+:::
+
+Tres formas equivalentes de imprimir `"¡Miau!"` tres veces:
+
+```python
+# Forma 1: iterando sobre una lista de valores
+for i in [0, 1, 2]:
+    print("¡Miau!")
+```
+
+```python
+# Forma 2: usando range() — más compacta
+for i in range(3):
+    print("¡Miau!")
+```
+
+```python
+# Forma 3: con _ cuando la variable no se usa en el cuerpo
+for _ in range(3):
+    print("¡Miau!")
+```
+
+::: {.caja-correcta}
+**Convención:** se usa `_` como nombre de variable cuando el ciclo solo necesita repetir N veces y el índice no se utiliza dentro del bloque.
+:::
+
+---
+
+## La Función `range()`
+
+::: {.num-seccion}
+03
+:::
+
+`range()` genera una secuencia de números enteros. Es la forma más común de controlar cuántas veces itera un ciclo `for`.
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Formas de uso:**
+
+::: {.sintaxis}
+`range(`fin`)`
+    0, 1, 2, ..., fin-1
+
+`range(`inicio`, `fin`)`
+    inicio, ..., fin-1
+
+`range(`inicio`, `fin`, `paso`)`
+    inicio, inicio+paso, ...
+:::
+
+:::
+::: {.column width="50%"}
+
+**Ejemplos:**
+
+```python
+range(5)        # 0, 1, 2, 3, 4
+range(1, 6)     # 1, 2, 3, 4, 5
+range(0, 10, 2) # 0, 2, 4, 6, 8
+range(5, 0, -1) # 5, 4, 3, 2, 1
+```
+
+```python
+# Sumar del 1 al 10
+total = 0
+for i in range(1, 11):
+    total += i
+print(f"Suma: {total}")  # 55
+```
+
+:::
+::::
+
+---
+
+## Ejemplo 2 — `for` con Índice
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** Lista de estudiantes — distintas formas de recorrerla.
+
+```python
+# Ejemplo usando un índice para mostrar posición
+estudiantes = ["Hermione", "Harry", "Ron"]
+
+for i in range(len(estudiantes)):
+    print(i + 1, estudiantes[i])
+```
+
+```
+1 Hermione
+2 Harry
+3 Ron
+```
+
+::: {.caja-correcta}
+**Importante:** El concepto clave aquí es que **`i`** sirve de doble propósito: como contador visible para el usuario **`(i + 1)`** y como índice para acceder a la lista (**`estudiantes[i]`**).
+:::
+
+---
+
+## Ejemplo 3 — `for` con Diccionario
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** Iterar sobre un diccionario para acceder a clave y valor.
+
+```python
+# Ejemplo usando las  casas del Colegio Hogwarts de Magia y Hechicería en Harry Potter
+estudiantes = {
+    "Hermione": "Gryffindor",
+    "Harry":    "Gryffindor",
+    "Ron":      "Gryffindor",
+    "Draco":    "Slytherin",
+}
+
+for estudiante in estudiantes:
+    print(estudiante, estudiantes[estudiante], sep=", ")
+```
+
+```
+Hermione, Gryffindor
+Harry, Gryffindor
+Ron, Gryffindor
+Draco, Slytherin
+```
+
+::: {.caja-correcta}
+Al iterar sobre un diccionario con **`for`**, la variable toma el valor de cada **clave**. El valor se obtiene con **`diccionario[clave]`**.
+:::
+
+---
+
+## Ejemplo 4 — `for` con Lista de Diccionarios
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** Cada estudiante tiene nombre, casa y patronus — se almacenan como diccionarios dentro de una lista.
+
+```python
+# Ejemplo usando una lista de diccionarios
+estudiantes = [
+    {"nombre": "Hermione", "casa": "Gryffindor", "patronus": "Nutria"},
+    {"nombre": "Harry",    "casa": "Gryffindor", "patronus": "Ciervo"},
+    {"nombre": "Ron",      "casa": "Gryffindor", "patronus": "Terrier"},
+    {"nombre": "Draco",    "casa": "Slytherin",  "patronus": None},
+]
+
+for estudiante in estudiantes:
+    print(estudiante["nombre"], estudiante["casa"],
+          estudiante["patronus"], sep=", ")
+```
+
+::: {.caja-correcta}
+**Lista de diccionarios:** estructura muy usada para representar registros con múltiples atributos. Cada elemento de la lista es un diccionario con las mismas claves.
+:::
+
+---
+
+## Contadores e Iteraciones
+
+::: {.num-seccion}
+04
+:::
+
+Un **contador** es una variable que se incrementa en cada iteración para llevar la cuenta de cuántas veces se ha ejecutado un ciclo.
+
+Un **acumulador** es similar, pero suma valores variables (no solo 1).
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**Contador:**
+```python
+contador = 0          # inicializar
+
+for _ in range(5):
+    contador += 1     # incrementar
+
+print(contador)       # 5
+```
+
+:::
+::: {.column width="50%"}
+
+**Acumulador:**
+```python
+total = 0             # inicializar
+
+for i in range(1, 6):
+    total += i        # acumular
+
+print(total)          # 15  (1+2+3+4+5)
+```
+
+:::
+::::
+
+::: {.caja-correcta}
+**Regla fundamental:** siempre **inicializar** el contador o acumulador en **`0`** antes del ciclo, y **actualizar** su valor dentro del bloque.
+:::
+
+---
+
+## El Ciclo `while`
+
+::: {.num-seccion}
+05
+:::
+
+El ciclo `while` repite un bloque de código **mientras la condición sea verdadera**.
+
+::: {.sintaxis}
+`while` condición`:`
+    bloque de código
+    (se repite mientras True)
+:::
+
+**¿Cómo funciona?**
+
+1. Python evalúa la condición **antes** de cada iteración
+2. Si es `True` → ejecuta el bloque
+3. Si es `False` → termina el ciclo
+4. La condición debe volverse `False` en algún momento, o el ciclo **nunca terminará**
+
+::: {.caja-error}
+⚠️ **Ciclo infinito:** si la condición nunca cambia a `False`, el programa queda atrapado. Siempre asegúrate de que algo dentro del bloque modifique la condición.
+:::
+
+---
+
+## Diagrama — Ciclo `while` {.slide-diagrama}
+
+::: {.num-seccion}
+05
+:::
+
+```{mermaid}
+%%| echo: false
+%%| eval: true
+%%| fig-width: 6
+%%| fig-height: 5
+flowchart TD
+    A([Inicio]) --> B[Inicializa contador]
+        B --> C{condicion es True?}
+        C -->|Si| D[Ejecutar bloque]
+        D --> E[Actualizar contador]
+        E --> C
+        C -->|No| F([Fin del ciclo])
+    style B fill:#02FF7A,stroke:#000000,color:#000000
+    style A fill:#1a1a1a,stroke:#000000,color:#ffffff
+    style E fill:#1a1a1a,stroke:#000000,color:#ffffff
+    style C fill:#e6fff2,stroke:#02FF7A,color:#000000
+    style D fill:#fff0f0,stroke:#e53e3e,color:#000000
+```
+
+---
+
+## Ejemplo 5 — `while` con Contador
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** Imprimir los números del 0 al 9 usando un contador.
+
+```python
+# Ejemplo de while con un contador
+contador = 0
+
+while contador < 10:
+    print(contador)
+    contador += 1       # actualizar el contador en cada iteración
+
+print("¡Listo!")
+```
+
+::: {.caja-correcta}
+**Patrón clásico `while` con contador:**
+
+1. Inicializar `contador = 0` antes del ciclo
+2. Usar el contador en la condición `contador < 10`
+3. Incrementar `contador += 1` dentro del bloque
+
+Sin el paso 3, la condición nunca cambia y se produce un **ciclo infinito**.
+:::
+
+---
+
+## Ejemplo 6 — `while` con Condición de Salida
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** El programa continúa hasta que el usuario decide salir.
+
+```python
+# Ejemplo de while con una condición de salida
+# .strip() elimina espacios al inicio y al final
+# .lower() convierte a minúsculas
+
+salida = ""
+
+while salida.strip().lower() != "si":
+    print("¡El programa está en ejecución!")
+    salida = input("¿Salir? (si/no): ")
+
+print("Programa finalizado.")
+```
+
+::: {.caja-correcta}
+**`.strip().lower()`** hace la comparación más robusta: acepta `" SI "`, `"Si"`, `"sI"`, etc. como entradas válidas para salir, evitando errores por espacios o mayúsculas accidentales.
+:::
+
+---
+
+## `while True`, `break` y `continue`
+
+::: {.num-seccion}
+06
+:::
+
+`while True` crea un ciclo que no termina por su condición — se detiene desde **dentro** del bloque.
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**`break`** — sale del ciclo inmediatamente:
+
+::: {.sintaxis}
+`while True:`
+    ...
+    `if` condición_salida`:`
+        `break`
+:::
+
+:::
+::: {.column width="50%"}
+
+**`continue`** — salta al inicio del ciclo:
+
+::: {.sintaxis}
+`while True:`
+    ...
+    `if` condición_salto`:`
+        `continue`
+    resto del bloque
+:::
+
+:::
+::::
+
+::: {.caja-correcta}
+**Cuándo usar `while True`:** cuando la condición de salida se determina **dentro** del ciclo (por ejemplo, validar una entrada del usuario).
+:::
+
+---
+
+## Ejemplo 7 — `while True` + `break`
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** El programa se repite hasta que el usuario decide no continuar.
+
+```python
+# Ejemplo de while con True + break
+while True:
+    print("El programa está en ejecución")
+    continuar = input("¿Continuar? (s/n): ")
+    if continuar == "n":
+        break
+
+print("¡Lo estábamos pasando bien!")   
+```
+
+::: {.caja-correcta}
+**Diferencia con `while condicion`:**
+en `while True` la condición de salida se evalúa **dentro** del bloque con `if` + `break`, en vez de al inicio del ciclo. Útil cuando necesitas ejecutar el bloque **al menos una vez**.
+:::
+
+---
+
+## Ejemplo 8 — Acumulador con `while True`
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** Sumar números ingresados por el usuario hasta que decida parar.
+
+```python
+# Ejemplo de acumulador con while True
+total = 0
+
+while True:
+    numero = int(input("Ingresa un número: "))
+    print("¡Sumando!")
+    total += numero
+    print("Total actual:", total)    
+    otro = input("¿Agregar otro número? (s/n): ")
+    if otro == "n":
+        break
+
+print(f"El total final es {total}. ¡Hasta pronto!")
+```
+
+::: {.caja-correcta}
+**Patrón acumulador:** `total` se inicializa en `0` antes del ciclo y se actualiza con `total += numero` en cada iteración.
+:::
+
+---
+
+## Ejemplo 9 — Validación con `break` y `continue`
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** Pedir un número positivo al usuario y luego imprimir `"¡Miau!"` esa cantidad de veces.
+
+```python
+# Ejemplo de while True con break
+while True:
+    n = int(input("¿Cuántas veces?: "))
+    if n > 0:
+        break         # salir del ciclo si n es válido
+
+for _ in range(n):
+    print("¡Miau!")
+```
+
+::: {.caja-correcta}
+**Patrón validar + usar:**
+
+1. `while True` con `break` garantiza que `n` sea un valor positivo antes de continuar
+2. Una vez validado, el `for` usa ese valor con seguridad
+3. Este patrón separa la **validación** de la **lógica principal**
+:::
+
+---
+
+## Ejemplo 10 — Contador de Intentos
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** Adivinar la palabra que completa un verso de Pablo Neruda.
+
+```python
+# Ejemplo de while True con break
+print("Completa el verso: ")
+
+intento = 0
+
+while True:
+    respuesta = input("La noche está estrellada, y _____, azules, los astros, a lo lejos: ")
+    intento += 1
+    if respuesta == "tiritan":
+        print("¡Correcto! ¡Bien hecho!")
+        break
+    else:
+        print("¡Incorrecto! Vuelve a intentarlo")
+        print(f"Llevas {intento} intentos")  
+
+print(f"Acertaste al {intento}º intento")
+```
+
+---
+
+## Ejemplo 11 — `while` con Condicionales Anidados
+
+::: {.num-seccion}
+🐍
+:::
+
+**Contexto:** Juego de sonidos de animales — combina `while` con `if/elif/else`.
+
+```python
+# Ejemplo de while con condicionales anidados
+salir = "n"
+
+while salir != "s":
+    animal = input("¿Qué sonido de animal quieres?: ")
+
+    if animal == "perro":
+        print("¡Guau guau!")
+    elif animal == "gato":
+        print("¡Miau miau!")
+    elif animal == "vaca":
+        print("¡Muu muu!")
+    else:
+        print("¡No conozco ese animal!")
+
+    salir = input("¿Quieres salir del juego? (s/n): ")
+
+print("Gracias por jugar. ¡Adiós!")
+```
+
+---
+
+## Buenas Prácticas
+
+::: {.num-seccion}
+07
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+
+**✅ Hacer:**
+
+- **Inicializar** contadores y acumuladores en `0` antes del ciclo
+- Usar **`for`** cuando se conoce la cantidad de iteraciones
+- Usar **`while`** cuando la condición de término es dinámica
+- Usar **`_`** si la variable de iteración no se necesita
+- Asegurarse de que el ciclo **siempre termine** (condición modificable)
+- Validar entradas del usuario con `while True` + `break`
+
+:::
+::: {.column width="50%"}
+
+**❌ Evitar:**
+
+- Ciclos infinitos por **no actualizar** la variable de condición
+- Modificar la variable de iteración **dentro del `for`**
+- Usar `while` cuando `for` + `range()` es más claro
+- Anidar más de **3 niveles** de ciclos
+- Omitir **casos borde** (listas vacías, n = 0, valores negativos)
+- Mezclar `break` y condiciones de ciclo sin un propósito claro
+
+:::
+::::
+
+---
+
+## Resumen de la Unidad
+
+::: {.num-seccion}
+08
+:::
+
+| Estructura | Cuándo usarla | Elemento clave |
+|:-----------|:--------------|:---------------|
+| `for` + lista | Recorrer elementos de una secuencia | Variable toma cada elemento |
+| `for` + `range()` | Repetir N veces con índice | `range(inicio, fin, paso)` |
+| `while` condición | Condición conocida antes del ciclo | Actualizar variable de condición |
+| `while True` + `break` | Condición dentro del ciclo | `break` para salir |
+| Contador | Contar iteraciones | `contador += 1` |
+| Acumulador | Sumar valores | `total += valor` |
+
+::: {.caja-correcta}
+**Regla de oro:** usa `for` cuando sabes cuántas veces iterar; usa `while` cuando la condición de término depende de lo que ocurre en el ciclo.
+:::
+
+---
+
+## {background-color="#000000"}
+
+<br><br><br>
+
+::: {style="text-align:center;"}
+
+[**Muchas gracias.**]{style="font-family:'EB Garamond',serif; font-size:3.2em; color:white; font-weight:700; display:block;"}
+
+[Fundamentos de Programación]{style="font-family:'Rubik',sans-serif; font-size:1em; color:#02FF7A; display:block; margin-top:22px;"}
+
+[Universidad Alberto Hurtado]{style="font-family:'Rubik',sans-serif; font-size:0.85em; color:rgba(255,255,255,0.65); display:block; margin-top:10px;"}
+
+<br>
+
+[Universidad para *el bien común*]{style="font-family:'Rubik',sans-serif; font-size:0.65em; color:rgba(255,255,255,0.4); display:block; margin-top:16px; font-style:italic;"}
+
+:::
